@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>关于 | DEBUG</title>
+    <meta name="description" content="无聊且折腾的人">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/BLOG/favicon.ico">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/BLOG/css/variables.css">
+    <link rel="stylesheet" href="/BLOG/css/reset.css">
+    <link rel="stylesheet" href="/BLOG/css/style.css">
+    <link rel="stylesheet" href="/BLOG/css/menu.css">
+    <link rel="stylesheet" href="/BLOG/css/responsive.css">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+<meta name="generator" content="Hexo 8.1.1"></head>
+<body>
+    <!-- Floating Left Menu -->
+    <!-- Floating Side Menu -->
+<nav class="side-menu" id="side-menu">
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Menu Items -->
+    <div class="menu-items">
+        <a href="/BLOG/" class="menu-item" data-title="主页">
+            <i class="fas fa-home"></i>
+            <span class="menu-label">主页</span>
+        </a>
+        
+        <a href="/BLOG/categories/" class="menu-item" data-title="分类">
+            <i class="fas fa-folder"></i>
+            <span class="menu-label">分类</span>
+        </a>
+        
+        <a href="/BLOG/tags/" class="menu-item" data-title="标签">
+            <i class="fas fa-tags"></i>
+            <span class="menu-label">标签</span>
+        </a>
+        
+        <a href="/BLOG/archives/" class="menu-item" data-title="归档">
+            <i class="fas fa-archive"></i>
+            <span class="menu-label">归档</span>
+        </a>
+        
+        <a href="/BLOG/about/" class="menu-item" data-title="关于">
+            <i class="fas fa-user"></i>
+            <span class="menu-label">关于</span>
+        </a>
+    </div>
+
+    <!-- Author Profile -->
+    <div class="menu-divider"></div>
+    <div class="menu-author">
+        <img src="/BLOG/images/touxiang.webp" alt="DEBUG" class="menu-author-avatar" onerror="this.style.display='none'">
+        <span class="menu-author-name">DEBUG</span>
+        <span class="menu-author-desc">无聊且折腾的人</span>
+        <div class="menu-author-links">
+            
+        </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="menu-divider"></div>
+
+    <!-- Tools -->
+    <div class="menu-tools">
+        <button class="menu-item menu-search" id="menu-search" data-title="搜索">
+            <i class="fas fa-search"></i>
+            <span class="menu-label">搜索</span>
+        </button>
+        
+        <button class="menu-item menu-theme-toggle" id="theme-toggle" data-title="深色模式">
+            <i class="fas fa-moon"></i>
+            <span class="menu-label">深色</span>
+        </button>
+    </div>
+</nav>
+
+<!-- Search Modal -->
+<div class="search-modal" id="search-modal">
+    <div class="search-modal-content">
+        <button class="search-modal-close" id="search-modal-close">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="search-modal-inner">
+            <input type="text" id="search-modal-input" class="search-modal-input" placeholder="搜索文章...">
+            <div id="search-results" class="search-results"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Menu Overlay (for mobile) -->
+<div class="menu-overlay" id="menu-overlay"></div>
+
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        
+
+
+    <!-- ==================== About Page ==================== -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1 class="page-hero-title"><i class="fas fa-user"></i> 关于</h1>
+            <p class="page-hero-desc">了解更多关于我和这个博客</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Author Card -->
+        <section class="about-author">
+            <div class="about-card">
+                <div class="about-avatar-wrap">
+                    <img src="/BLOG/images/touxiang.webp" alt="DEBUG" class="about-avatar" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI0Q4QzdFOSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNkI1Qjk1IiBmb250LXNpemU9IjQ4Ij7wn5GMPC90ZXh0Pjwvc3ZnPg=='">
+                </div>
+                <h2 class="about-name">DEBUG</h2>
+                <p class="about-bio">无聊且折腾的人</p>
+                <div class="about-social">
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Stats -->
+        <section class="about-stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">篇文章</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">1</div>
+                    <div class="stat-label">个分类</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">个标签</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Timeline -->
+        <section class="about-timeline">
+            <h2 class="section-title">博客时间线</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2026-03</div>
+                        <h3 class="timeline-title">博客诞生</h3>
+                        <p class="timeline-desc">使用 Hexo + Anime Purple 主题搭建了这个博客，开始记录生活与技术。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+    </main>
+    
+    <!-- Footer -->
+    <footer class="site-footer">
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4 class="footer-title">关于本站</h4>
+                <p>无聊且折腾的人</p>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-title">友情链接</h4>
+                <ul class="footer-links">
+                    
+                        <li><a href="javascript:void(0)">暂无友链</a></li>
+                    
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-title">网站统计</h4>
+                <ul class="footer-stats">
+                    <li>文章数：1</li>
+                    <li>分类数：1</li>
+                    <li>标签数：3</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 <a href="/BLOG/">DEBUG</a></p>
+            <p>主题由 <a href="https://github.com" target="_blank">Anime Purple</a> 强力驱动</p>
+        </div>
+    </div>
+</footer>
+
+    
+    <!-- Scripts -->
+    <script src="/BLOG/js/script.js"></script>
+</body>
+</html>
