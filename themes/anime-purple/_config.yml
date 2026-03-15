@@ -1,0 +1,221 @@
+# Anime Purple Theme Configuration
+# 淡紫动漫主题配置文件
+
+# ==================== Logo & Branding ====================
+# Logo (optional)
+logo: 
+
+# Favicon
+favicon: /favicon.ico
+
+# ==================== Menu Items ====================
+# Main navigation menu
+menu:
+  Home: /
+  Categories: /categories/
+  Tags: /tags/
+  Archives: /archives/
+  About: /about/
+
+# ==================== Social Links ====================
+# Social media links
+social:
+  github: https://github.com
+  twitter: https://twitter.com
+  weibo: https://weibo.com
+  # email: your-email@example.com
+  # qq: your-qq-number
+  # wechat: your-wechat-account
+
+# ==================== Friends Links ====================
+# Friendly links
+friends:
+  # Friend Name: https://friend-website.com
+
+# ==================== Theme Settings ====================
+# Theme color scheme
+# Options: light, dark, auto
+color_scheme: light
+
+# Enable animations
+enable_animations: true
+
+# Enable smooth scroll
+enable_smooth_scroll: true
+
+# Enable dark mode toggle
+enable_dark_mode: true
+
+# Enable search functionality
+enable_search: true
+
+# ==================== Hero Section ====================
+# Hero section background image URL
+# 使用本地图片: /images/hero-bg.png
+# 或使用在线图片 URL
+hero_bg: /images/hero-bg.png
+
+# Hero title (if not using config.title)
+# hero_title: Welcome to My Blog
+
+# Hero subtitle
+hero_subtitle: 欢迎来到我的博客
+
+# ==================== Image Theming / 图片主题系统 ====================
+# 只需替换以下路径即可改变博客整体风格
+# 所有图片放在 source/images/ 目录下
+
+images:
+  # 首页 Hero 大背景图
+  hero_bg: /images/hero-bg.png
+  # 侧边栏装饰图（二次元角色等）
+  sidebar_art: /images/sidebar-art.png
+  # 文章页顶部装饰图
+  post_banner: /images/post-banner.png
+  # 分类/标签/归档页面 Hero 背景
+  page_hero_bg: /images/page-hero-bg.png
+  # 页脚装饰图
+  footer_art: /images/footer-art.png
+  # 404 页面图
+  not_found: /images/404.png
+  # 加载占位图
+  placeholder: /images/placeholder.png
+
+# ==================== Anime Art Slots / 二次元插画位 ====================
+# 预留的二次元插画展示位，上传图片后自动显示
+# 设置为空则隐藏对应位置
+anime_art:
+  # 首页知识地图旁边的立绘
+  home_character: /images/anime/home-character.png
+  # 文章页侧边浮动角色
+  post_floating: /images/anime/post-floating.png
+  # 归档页装饰
+  archive_decoration: /images/anime/archive-deco.png
+  # 关于页大图
+  about_illustration: /images/anime/about-illustration.png
+  # 搜索弹窗背景角色
+  search_character: /images/anime/search-character.png
+
+# ==================== Home Page ====================
+# Number of posts per page
+per_page: 12
+
+# Show featured posts on homepage
+featured_posts: true
+
+# Show categories preview on homepage
+show_categories: true
+
+# Number of categories to display
+categories_count: 8
+
+# ==================== Post Settings ====================
+# Show reading time estimate
+show_reading_time: true
+
+# Show update time
+show_update_time: false
+
+# Show author
+show_author: true
+
+# Show related posts
+show_related_posts: true
+
+# Number of related posts
+related_posts_count: 3
+
+# Enable comments
+enable_comments: false
+
+# Comment system (disqus, gitalk, valine, etc.)
+comment_system: disqus
+
+# Disqus shortname
+disqus_shortname: 
+
+# ==================== Colors ====================
+# You can customize the color palette here
+colors:
+  primary: "#D8C7E9"           # 淡紫色
+  primary_dark: "#6B5B95"      # 深紫色
+  primary_light: "#E8DDF5"     # 浅紫色
+  accent: "#FF6B9D"            # 粉红色强调
+  background: "#FAFAFA"        # 背景白
+  text_primary: "#2C2C2C"      # 正文深色
+  text_secondary: "#666666"    # 次文本灰
+  text_tertiary: "#9E9E9E"     # 辅助文本灰
+
+# ==================== Typography ====================
+# Font family
+font:
+  # English font
+  base: "'Poppins', 'Segoe UI', sans-serif"
+  # Heading font
+  heading: "'Poppins', 'Noto Sans SC', sans-serif"
+  # Mono font (code blocks)
+  mono: "'Courier New', monospace"
+
+# ==================== Footer ====================
+# Copyright text
+copyright: 
+
+# Footer links
+footer_links:
+  - text: "Powered by Hexo"
+    url: "https://hexo.io"
+  - text: "Anime Purple Theme"
+    url: "#"
+
+# ==================== CDN & Resources ====================
+# External libraries
+cdn:
+  # Font Awesome (for icons)
+  fontawesome: "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  
+  # Google Fonts
+  google_fonts: "https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap"
+
+# ==================== Code Highlight ====================
+# Syntax highlighting theme
+highlight_theme: dracula
+
+# Show line numbers in code blocks
+show_line_numbers: false
+
+# ==================== Advanced Settings ====================
+# Open external links in new tab
+external_link_new_tab: true
+
+# Strip HTML tags
+strip_html: true
+
+# Strip search index
+strip_search_index: false
+
+# SEO settings
+seo:
+  enable: true
+  google_analytics: 
+  baidu_analytics: 
+
+# ==================== Animation Settings ====================
+# Animation effects
+animations:
+  enable_fade_in: true
+  enable_slide_up: true
+  enable_stagger: true
+  animation_duration: 0.3
+
+# ==================== Lazyload Images ====================
+# Enable image lazy loading
+lazyload:
+  enable: true
+  native: false
+
+# ==================== Multi-language Support ====================
+# Language
+language: zh-CN
+
+# Available languages
+# zh-CN, en, ja, etc.

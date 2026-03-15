@@ -1,0 +1,186 @@
+<%
+// Page dispatcher: renders different content based on page.type
+var pageType = page.type || 'default';
+%>
+
+<% if (pageType === 'categories') { %>
+    <!-- ==================== Categories Index Page ==================== -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1 class="page-hero-title"><i class="fas fa-folder-open"></i> 文章分类</h1>
+            <p class="page-hero-desc">共 <%- site.categories.length %> 个分类 · <%- site.posts.length %> 篇文章</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="cat-overview">
+            <div class="cat-tree">
+                <%
+                var allCats = site.categories;
+                var topCats = [];
+
+                allCats.forEach(function(cat) {
+                    if (!cat.parent) {
+                        topCats.push(cat);
+                    }
+                });
+                topCats.sort(function(a, b) { return b.posts.length - a.posts.length; });
+                %>
+
+                <% topCats.forEach(function(cat) { %>
+                    <div class="cat-group">
+                        <a href="<%- config.root %><%- cat.path %>" class="cat-parent">
+                            <div class="cat-parent-icon">
+                                <i class="fas fa-folder-open"></i>
+                            </div>
+                            <div class="cat-parent-info">
+                                <h3 class="cat-parent-name"><%- cat.name %></h3>
+                                <span class="cat-parent-count"><%- cat.posts.length %> 篇文章</span>
+                            </div>
+                            <i class="fas fa-chevron-right cat-parent-arrow"></i>
+                        </a>
+                    </div>
+                <% }); %>
+            </div>
+        </section>
+    </div>
+
+<% } else if (pageType === 'tags') { %>
+    <!-- ==================== Tags Index Page ==================== -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1 class="page-hero-title"><i class="fas fa-tags"></i> 标签云</h1>
+            <p class="page-hero-desc">共 <%- site.tags.length %> 个标签</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="tags-index">
+            <div class="tags-cloud-full">
+                <% site.tags.sort('name').forEach(function(tag) { %>
+                    <a href="<%- config.root %><%- tag.path %>" class="tag-cloud-card">
+                        <span class="tag-cloud-card-name"># <%- tag.name %></span>
+                        <span class="tag-cloud-card-count"><%- tag.posts.length %> 篇</span>
+                    </a>
+                <% }); %>
+            </div>
+        </section>
+
+        <!-- Recent tagged posts preview -->
+        <section class="tags-recent">
+            <h2 class="section-title">最近标记的文章</h2>
+            <div class="posts-grid">
+                <% site.posts.sort('-date').limit(6).forEach(function(post) { %>
+                    <article class="post-card">
+                        <div class="post-card-content">
+                            <h3 class="post-title">
+                                <a href="<%- config.root %><%- post.path %>"><%- post.title %></a>
+                            </h3>
+                            <p class="post-excerpt"><%- post.excerpt || post.content.substring(0, 120) %></p>
+                            <div class="post-meta">
+                                <span class="post-date">
+                                    <i class="fas fa-calendar"></i>
+                                    <%- date(post.date, 'YYYY-MM-DD') %>
+                                </span>
+                            </div>
+                            <div class="post-tags">
+                                <% post.tags.forEach(function(tag) { %>
+                                    <a href="<%- config.root %><%- tag.path %>" class="tag"><%- tag.name %></a>
+                                <% }); %>
+                            </div>
+                        </div>
+                    </article>
+                <% }); %>
+            </div>
+        </section>
+    </div>
+
+<% } else if (pageType === 'about') { %>
+    <!-- ==================== About Page ==================== -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1 class="page-hero-title"><i class="fas fa-user"></i> 关于</h1>
+            <p class="page-hero-desc">了解更多关于我和这个博客</p>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Author Card -->
+        <section class="about-author">
+            <div class="about-card">
+                <div class="about-avatar-wrap">
+                    <img src="<%- config.root %>images/touxiang.webp" alt="<%- config.author %>" class="about-avatar" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMjAiIGhlaWdodD0iMTIwIj48cmVjdCB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgZmlsbD0iI0Q4QzdFOSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSIjNkI1Qjk1IiBmb250LXNpemU9IjQ4Ij7wn5GMPC90ZXh0Pjwvc3ZnPg=='">
+                </div>
+                <h2 class="about-name"><%- config.author %></h2>
+                <p class="about-bio"><%- config.description || '这个人很懒，什么都没写...' %></p>
+                <div class="about-social">
+                    <% if (config.social) { %>
+                        <% Object.keys(config.social).forEach(function(key) { %>
+                            <%
+                            var url = config.social[key];
+                            var icon = {
+                                'github': 'fab fa-github',
+                                'weibo': 'fab fa-weibo',
+                                'twitter': 'fab fa-twitter',
+                                'email': 'fas fa-envelope',
+                                'qq': 'fab fa-qq',
+                                'wechat': 'fab fa-wechat'
+                            }[key] || 'fas fa-link';
+                            %>
+                            <a href="<%- url %>" target="_blank" class="about-social-link" title="<%- key %>">
+                                <i class="<%- icon %>"></i>
+                                <span><%- key %></span>
+                            </a>
+                        <% }); %>
+                    <% } %>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Stats -->
+        <section class="about-stats">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number"><%- site.posts.length %></div>
+                    <div class="stat-label">篇文章</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number"><%- site.categories.length %></div>
+                    <div class="stat-label">个分类</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number"><%- site.tags.length %></div>
+                    <div class="stat-label">个标签</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Timeline -->
+        <section class="about-timeline">
+            <h2 class="section-title">博客时间线</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2026-03</div>
+                        <h3 class="timeline-title">博客诞生</h3>
+                        <p class="timeline-desc">使用 Hexo + Anime Purple 主题搭建了这个博客，开始记录生活与技术。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+<% } else { %>
+    <!-- ==================== Default Page ==================== -->
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1 class="page-hero-title"><%- page.title %></h1>
+        </div>
+    </section>
+    <div class="container">
+        <article class="page-content">
+            <%- page.content %>
+        </article>
+    </div>
+<% } %>

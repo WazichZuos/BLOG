@@ -1,0 +1,120 @@
+/* ============================================================
+   Anime Purple Theme - CSS Variables
+   淡紫主题色配置文件
+   ============================================================ */
+
+:root {
+    /* Primary Colors - 主色系 */
+    --color-primary: #D8C7E9;           /* 淡紫色 */
+    --color-primary-dark: #6B5B95;      /* 深紫色 */
+    --color-primary-light: #E8DDF5;     /* 浅紫色 */
+    
+    /* Accent Colors - 强调色 */
+    --color-accent: #FF6B9D;            /* 粉红色强调 */
+    --color-accent-light: #FFB3D9;      /* 浅粉红 */
+    
+    /* Neutral Colors - 中性色 */
+    --color-background: #FAFAFA;        /* 背景白 */
+    --color-surface: #FFFFFF;           /* 表面白 */
+    --color-text-primary: #2C2C2C;      /* 正文深色 */
+    --color-text-secondary: #666666;    /* 次文本灰 */
+    --color-text-tertiary: #9E9E9E;     /* 辅助文本灰 */
+    --color-border: #E0E0E0;            /* 边框灰 */
+    
+    /* Backgrounds - 背景色 */
+    --color-bg-light: #F5F5F5;          /* 浅灰背景 */
+    --color-bg-darker: #2D2D2D;         /* 深色背景 */
+    
+    /* Semantic Colors */
+    --color-success: #4CAF50;
+    --color-warning: #FFC107;
+    --color-error: #F44336;
+    --color-info: #2196F3;
+    
+    /* Dark Mode Colors */
+    --color-dark-bg: #1A1A1A;
+    --color-dark-surface: #2D2D2D;
+    --color-dark-text: #E0E0E0;
+    --color-dark-border: #444444;
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(107, 91, 149, 0.08);
+    --shadow-md: 0 4px 12px rgba(107, 91, 149, 0.1);
+    --shadow-lg: 0 8px 24px rgba(107, 91, 149, 0.15);
+    --shadow-xl: 0 12px 32px rgba(107, 91, 149, 0.2);
+    
+    /* Typography */
+    --font-family-base: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans SC', 'Noto Sans', sans-serif;
+    --font-family-display: 'Poppins', 'Noto Sans SC', sans-serif;
+    --font-family-mono: 'Courier New', 'Courier', monospace;
+    
+    --font-size-xs: 12px;
+    --font-size-sm: 14px;
+    --font-size-base: 16px;
+    --font-size-lg: 18px;
+    --font-size-xl: 24px;
+    --font-size-2xl: 32px;
+    --font-size-3xl: 48px;
+    
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    /* Line Heights */
+    --line-height-tight: 1.2;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.8;
+    
+    /* Spacing */
+    --spacing-xs: 4px;
+    --spacing-sm: 8px;
+    --spacing-md: 12px;
+    --spacing-lg: 16px;
+    --spacing-xl: 24px;
+    --spacing-2xl: 32px;
+    --spacing-3xl: 48px;
+    
+    /* Border Radius */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-full: 9999px;
+    
+    /* Transitions */
+    --transition-duration-fast: 150ms;
+    --transition-duration-base: 300ms;
+    --transition-duration-slow: 500ms;
+    --transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Z-Index */
+    --z-index-menu: 1000;
+    --z-index-search-modal: 999;
+    --z-index-overlay: 998;
+    --z-index-tooltip: 100;
+    
+    /* Container */
+    --container-width: 1200px;
+    --container-padding: 16px;
+    
+    /* Breakpoints */
+    --breakpoint-mobile: 480px;
+    --breakpoint-tablet: 768px;
+    --breakpoint-desktop: 1024px;
+    --breakpoint-wide: 1400px;
+}
+
+/* Dark Mode Variables */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --color-background: #1A1A1A;
+        --color-surface: #2D2D2D;
+        --color-text-primary: #E0E0E0;
+        --color-text-secondary: #B0B0B0;
+        --color-text-tertiary: #808080;
+        --color-border: #444444;
+        --color-bg-light: #3D3D3D;
+    }
+}

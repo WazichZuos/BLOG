@@ -1,0 +1,44 @@
+<footer class="site-footer">
+    <!-- Footer Art Slot -->
+    <% if (theme.images && theme.images.footer_art) { %>
+    <div class="footer-art anime-art-slot">
+        <img src="<%- config.root %><%- theme.images.footer_art.replace(/^\//, '') %>" alt="Footer Art">
+    </div>
+    <% } %>
+
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4 class="footer-title">关于本站</h4>
+                <p><%- config.description || '一个极简风格的动漫主题博客' %></p>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-title">友情链接</h4>
+                <ul class="footer-links">
+                    <% if (theme.friends) { %>
+                        <% Object.keys(theme.friends).forEach(function(name) { %>
+                            <li><a href="<%- theme.friends[name] %>" target="_blank"><%- name %></a></li>
+                        <% }); %>
+                    <% } else { %>
+                        <li><a href="javascript:void(0)">暂无友链</a></li>
+                    <% } %>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h4 class="footer-title">网站统计</h4>
+                <ul class="footer-stats">
+                    <li>文章数：<%- site.posts.length %></li>
+                    <li>分类数：<%- site.categories.length %></li>
+                    <li>标签数：<%- site.tags.length %></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; <%- new Date().getFullYear() %> <a href="<%- config.root %>"><%- config.title %></a></p>
+            <p>主题由 <a href="https://github.com" target="_blank">Anime Purple</a> 强力驱动</p>
+        </div>
+    </div>
+</footer>

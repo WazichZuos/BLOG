@@ -1,0 +1,95 @@
+<!-- Category Hero Section -->
+<section class="page-hero" <% if (theme.images && theme.images.page_hero_bg) { %>style="background-image: url('<%- config.root %><%- theme.images.page_hero_bg.replace(/^\//, '') %>'); background-size: cover; background-position: center;"<% } %>>
+    <div class="page-hero-content">
+        <h1 class="page-hero-title">
+            <i class="fas fa-bookmark"></i>
+            <%- page.category %>
+        </h1>
+        <p class="page-hero-desc">共 <%- site.categories.findOne({name: page.category}).posts.length %> 篇文章</p>
+        <div class="category-hero-breadcrumb">
+            <a href="<%- config.root %>"><i class="fas fa-home"></i> 首页</a>
+            <span class="breadcrumb-sep"><i class="fas fa-chevron-right"></i></span>
+            <a href="<%- config.root %>categories/">分类</a>
+            <span class="breadcrumb-sep"><i class="fas fa-chevron-right"></i></span>
+            <span class="breadcrumb-current"><%- page.category %></span>
+        </div>
+    </div>
+</section>
+
+<div class="container">
+    <!-- All Categories Overview -->
+    <section class="cat-overview">
+        <h2 class="section-title">所有分类</h2>
+        <div class="cat-tree">
+            <%
+            var allCats = site.categories;
+            var topCats = [];
+
+            allCats.forEach(function(cat) {
+                if (!cat.parent) {
+                    topCats.push(cat);
+                }
+            });
+            topCats.sort(function(a, b) { return b.posts.length - a.posts.length; });
+            %>
+
+            <% topCats.forEach(function(cat) { %>
+                <div class="cat-group">
+                    <a href="<%- config.root %><%- cat.path %>" class="cat-parent <%- cat.name === page.category ? 'active' : '' %>">
+                        <div class="cat-parent-icon">
+                            <i class="fas fa-folder-open"></i>
+                        </div>
+                        <div class="cat-parent-info">
+                            <h3 class="cat-parent-name"><%- cat.name %></h3>
+                            <span class="cat-parent-count"><%- cat.posts.length %> 篇文章</span>
+                        </div>
+                        <i class="fas fa-chevron-right cat-parent-arrow"></i>
+                    </a>
+                </div>
+            <% }); %>
+        </div>
+    </section>
+
+    <!-- Posts in Current Category -->
+    <section class="cat-posts">
+        <h2 class="section-title">
+            <%- page.category %> · 文章列表
+        </h2>
+
+        <div class="cat-posts-grid">
+            <%
+            var posts = site.categories.findOne({name: page.category}).posts.sort('-date');
+            posts.forEach(function(post) {
+            %>
+                <article class="post-card">
+                    <% if (post.cover) { %>
+                        <div class="post-cover">
+                            <img src="<%- post.cover %>" alt="<%- post.title %>">
+                        </div>
+                    <% } %>
+                    <div class="post-card-content">
+                        <h3 class="post-title">
+                            <a href="<%- config.root %><%- post.path %>"><%- post.title %></a>
+                        </h3>
+                        <p class="post-excerpt"><%- post.excerpt || strip_html(post.content).substring(0, 150) %></p>
+                        <div class="post-meta">
+                            <span class="post-date">
+                                <i class="fas fa-calendar"></i>
+                                <%- date(post.date, 'YYYY-MM-DD') %>
+                            </span>
+                            <span class="post-category">
+                                <i class="fas fa-folder"></i>
+                                <%- post.categories.map(function(c){ return c.name }).join(' / ') %>
+                            </span>
+                        </div>
+                        <div class="post-tags">
+                            <% post.tags.forEach(function(tag) { %>
+                                <a href="<%- config.root %><%- tag.path %>" class="tag"><%- tag.name %></a>
+                            <% }); %>
+                        </div>
+                    </div>
+                </article>
+            <% }); %>
+        </div>
+    </section>
+</div>

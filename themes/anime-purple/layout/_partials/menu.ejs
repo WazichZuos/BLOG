@@ -1,0 +1,106 @@
+<!-- Floating Side Menu -->
+<nav class="side-menu" id="side-menu">
+    <!-- Menu Toggle Button -->
+    <button class="menu-toggle" id="menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+
+    <!-- Menu Items -->
+    <div class="menu-items">
+        <a href="<%- config.root %>" class="menu-item" data-title="主页">
+            <i class="fas fa-home"></i>
+            <span class="menu-label">主页</span>
+        </a>
+        
+        <a href="<%- config.root %>categories/" class="menu-item" data-title="分类">
+            <i class="fas fa-folder"></i>
+            <span class="menu-label">分类</span>
+        </a>
+        
+        <a href="<%- config.root %>tags/" class="menu-item" data-title="标签">
+            <i class="fas fa-tags"></i>
+            <span class="menu-label">标签</span>
+        </a>
+        
+        <a href="<%- config.root %>archives/" class="menu-item" data-title="归档">
+            <i class="fas fa-archive"></i>
+            <span class="menu-label">归档</span>
+        </a>
+        
+        <a href="<%- config.root %>about/" class="menu-item" data-title="关于">
+            <i class="fas fa-user"></i>
+            <span class="menu-label">关于</span>
+        </a>
+    </div>
+
+    <!-- Author Profile -->
+    <div class="menu-divider"></div>
+    <div class="menu-author">
+        <img src="<%- config.root %>images/touxiang.webp" alt="<%- config.author %>" class="menu-author-avatar" onerror="this.style.display='none'">
+        <span class="menu-author-name"><%- config.author %></span>
+        <span class="menu-author-desc"><%- config.description || '' %></span>
+        <div class="menu-author-links">
+            <% if (config.social) { %>
+                <% Object.keys(config.social).forEach(function(key) { %>
+                    <% 
+                    var url = config.social[key];
+                    var icon = {
+                        'github': 'fab fa-github',
+                        'weibo': 'fab fa-weibo',
+                        'twitter': 'fab fa-twitter',
+                        'email': 'fas fa-envelope',
+                        'qq': 'fab fa-qq',
+                        'wechat': 'fab fa-wechat'
+                    }[key] || 'fas fa-link';
+                    %>
+                    <a href="<%- url %>" target="_blank" title="<%- key %>" aria-label="<%- key %>">
+                        <i class="<%- icon %>"></i>
+                    </a>
+                <% }); %>
+            <% } %>
+        </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="menu-divider"></div>
+
+    <!-- Tools -->
+    <div class="menu-tools">
+        <button class="menu-item menu-search" id="menu-search" data-title="搜索">
+            <i class="fas fa-search"></i>
+            <span class="menu-label">搜索</span>
+        </button>
+    </div>
+
+    <!-- Sidebar Art Slot -->
+    <% if (theme.anime_art && theme.anime_art.home_character) { %>
+    <div class="menu-art anime-art-slot">
+        <img src="<%- config.root %><%- theme.images && theme.images.sidebar_art ? theme.images.sidebar_art.replace(/^\//, '') : 'images/sidebar-art.png' %>" alt="Sidebar Art">
+    </div>
+    <% } %>
+</nav>
+
+<!-- Search Modal -->
+<div class="search-modal" id="search-modal">
+    <div class="search-modal-content">
+        <button class="search-modal-close" id="search-modal-close">
+            <i class="fas fa-times"></i>
+        </button>
+        <div class="search-modal-inner">
+            <div class="search-modal-hint">按 ESC 关闭 · Ctrl+K 打开搜索</div>
+            <input type="text" id="search-modal-input" class="search-modal-input" placeholder="搜索知识库...">
+            <div id="search-results" class="search-results"></div>
+        </div>
+        <!-- Anime Art Slot: 搜索弹窗角色 -->
+        <% if (theme.anime_art && theme.anime_art.search_character) { %>
+        <div class="search-modal-art anime-art-slot">
+            <img src="<%- config.root %><%- theme.anime_art.search_character.replace(/^\//, '') %>" alt="Character">
+        </div>
+        <% } %>
+    </div>
+</div>
+
+<!-- Menu Overlay (for mobile) -->
+<div class="menu-overlay" id="menu-overlay"></div>

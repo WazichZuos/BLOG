@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="<%- config.language %>">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="root" content="<%- config.root %>">
+    <title><%- page.title ? page.title + ' | ' : '' %><%- config.title %></title>
+    <meta name="description" content="<%- page.description || config.description %>">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="<%- config.root %>favicon.ico">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="<%- config.root %>css/variables.css">
+    <link rel="stylesheet" href="<%- config.root %>css/reset.css">
+    <link rel="stylesheet" href="<%- config.root %>css/style.css">
+    <link rel="stylesheet" href="<%- config.root %>css/menu.css">
+    <link rel="stylesheet" href="<%- config.root %>css/responsive.css">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Reading Progress Bar -->
+    <div class="reading-progress-bar">
+        <div class="reading-progress-fill" id="reading-progress"></div>
+    </div>
+
+    <!-- Floating Left Menu -->
+    <%- partial('_partials/menu') %>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <%- body %>
+    </main>
+    
+    <!-- Footer -->
+    <%- partial('_partials/footer') %>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="back-to-top" aria-label="回到顶部">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+    
+    <!-- Scripts -->
+    <script src="<%- config.root %>js/script.js"></script>
+</body>
+</html>

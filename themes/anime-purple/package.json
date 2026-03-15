@@ -1,0 +1,27 @@
+{
+  "name": "hexo-theme-anime-purple",
+  "version": "1.0.0",
+  "description": "A minimalist Hexo theme with purple tones and anime aesthetics, featuring a floating left-side menu",
+  "main": "index.js",
+  "keywords": [
+    "hexo",
+    "theme",
+    "purple",
+    "minimalist",
+    "anime",
+    "minimal"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/hexo-theme-anime-purple"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/hexo-theme-anime-purple/issues"
+  },
+  "homepage": "https://github.com/yourusername/hexo-theme-anime-purple",
+  "engines": {
+    "hexo": ">=5.0.0"
+  }
+}

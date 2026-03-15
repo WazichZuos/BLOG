@@ -1,0 +1,71 @@
+<!-- Archive Hero Section -->
+<section class="page-hero" <% if (theme.images && theme.images.page_hero_bg) { %>style="background-image: url('<%- config.root %><%- theme.images.page_hero_bg.replace(/^\//, '') %>'); background-size: cover; background-position: center;"<% } %>>
+    <div class="page-hero-content">
+        <h1 class="page-hero-title"><i class="fas fa-archive"></i> 文章归档</h1>
+        <p class="page-hero-desc">共 <%- site.posts.length %> 篇文章 · 记录点滴</p>
+    </div>
+</section>
+
+<div class="container">
+    <div class="archive-layout">
+        <section class="archive-section">
+            <div class="archive-timeline">
+                <%
+                var years = {};
+                site.posts.forEach(function(post) {
+                    var year = date(post.date, 'YYYY');
+                    if (!years[year]) years[year] = [];
+                    years[year].push(post);
+                });
+
+                Object.keys(years).sort().reverse().forEach(function(year) {
+                %>
+                    <div class="archive-year-group">
+                        <h2 class="archive-year">
+                            <span class="archive-year-text"><%- year %></span>
+                            <span class="archive-year-count"><%- years[year].length %> 篇</span>
+                        </h2>
+                        <div class="archive-posts">
+                            <% years[year].sort(function(a, b) { return b.date - a.date; }).forEach(function(post) { %>
+                                <article class="archive-card">
+                                    <div class="archive-card-date">
+                                        <span class="archive-card-month"><%- date(post.date, 'MM') %> 月</span>
+                                        <span class="archive-card-day"><%- date(post.date, 'DD') %></span>
+                                    </div>
+                                    <div class="archive-card-body">
+                                        <h3 class="archive-card-title">
+                                            <a href="<%- config.root %><%- post.path %>"><%- post.title %></a>
+                                        </h3>
+                                        <p class="archive-card-excerpt"><%- post.excerpt || strip_html(post.content).substring(0, 100) %></p>
+                                        <div class="archive-card-meta">
+                                            <% if (post.categories.length) { %>
+                                                <span class="archive-card-cat">
+                                                    <i class="fas fa-folder"></i>
+                                                    <%- post.categories.map(function(c){ return c.name }).join(' / ') %>
+                                                </span>
+                                            <% } %>
+                                            <% if (post.tags.length) { %>
+                                                <div class="archive-card-tags">
+                                                    <% post.tags.slice(0, 3).forEach(function(tag) { %>
+                                                        <a href="<%- config.root %><%- tag.path %>" class="tag"><%- tag.name %></a>
+                                                    <% }); %>
+                                                </div>
+                                            <% } %>
+                                        </div>
+                                    </div>
+                                </article>
+                            <% }); %>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        </section>
+
+        <!-- Anime Art Slot: 归档页装饰 -->
+        <% if (theme.anime_art && theme.anime_art.archive_decoration) { %>
+        <aside class="archive-side anime-art-slot">
+            <img src="<%- config.root %><%- theme.anime_art.archive_decoration.replace(/^\//, '') %>" alt="Decoration">
+        </aside>
+        <% } %>
+    </div>
+</div>

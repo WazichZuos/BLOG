@@ -1,0 +1,145 @@
+<article class="post-article">
+    <div class="container">
+        <!-- Breadcrumbs -->
+        <nav class="post-breadcrumb">
+            <a href="<%- config.root %>"><i class="fas fa-home"></i> 首页</a>
+            <span class="breadcrumb-sep"><i class="fas fa-chevron-right"></i></span>
+            <% if (page.categories.length) { %>
+                <% page.categories.forEach(function(cat, index) { %>
+                    <a href="<%- config.root %><%- cat.path %>"><%- cat.name %></a>
+                    <% if (index < page.categories.length - 1) { %>
+                        <span class="breadcrumb-sep"><i class="fas fa-chevron-right"></i></span>
+                    <% } %>
+                <% }); %>
+                <span class="breadcrumb-sep"><i class="fas fa-chevron-right"></i></span>
+            <% } %>
+            <span class="breadcrumb-current"><%- page.title %></span>
+        </nav>
+
+        <!-- Article Header -->
+        <header class="post-header">
+            <h1 class="post-title-main"><%- page.title %></h1>
+            <div class="post-meta-bar">
+                <span class="post-date">
+                    <i class="fas fa-calendar-alt"></i>
+                    <%- date(page.date, 'YYYY年MM月DD日') %>
+                </span>
+                <% if (page.categories.length) { %>
+                    <span class="post-category">
+                        <i class="fas fa-folder-open"></i>
+                        <% page.categories.forEach(function(cat, index) { %>
+                            <a href="<%- config.root %><%- cat.path %>"><%- cat.name %></a><% if (index < page.categories.length - 1) { %>, <% } %>
+                        <% }); %>
+                    </span>
+                <% } %>
+                <span class="post-reading-time">
+                    <i class="fas fa-clock"></i>
+                    <%- Math.ceil(strip_html(page.content).length / 300) %> 分钟阅读
+                </span>
+            </div>
+            <% if (page.tags.length) { %>
+                <div class="post-tags-header">
+                    <i class="fas fa-tags"></i>
+                    <% page.tags.forEach(function(tag) { %>
+                        <a href="<%- config.root %><%- tag.path %>" class="tag-badge"><%- tag.name %></a>
+                    <% }); %>
+                </div>
+            <% } %>
+        </header>
+
+        <!-- Article Body with TOC -->
+        <div class="post-body-layout">
+            <!-- TOC Sidebar -->
+            <% var tocContent = toc(page.content, {list_number: false}); %>
+            <% if (tocContent) { %>
+            <aside class="post-toc-wrap">
+                <div class="post-toc-container" id="post-toc">
+                    <div class="post-toc-header">
+                        <i class="fas fa-list-ul"></i>
+                        <span>文章目录</span>
+                        <button class="toc-toggle-btn" id="toc-toggle"><i class="fas fa-minus"></i></button>
+                    </div>
+                    <div class="post-toc-body">
+                        <%- tocContent %>
+                    </div>
+                </div>
+
+                <!-- Anime Art Slot: 文章页浮动角色 -->
+                <% if (theme.anime_art && theme.anime_art.post_floating) { %>
+                <div class="anime-art-slot post-side-art">
+                    <img src="<%- config.root %><%- theme.anime_art.post_floating.replace(/^\//, '') %>" alt="Art">
+                </div>
+                <% } %>
+            </aside>
+            <% } %>
+
+            <!-- Article Content -->
+            <div class="post-content">
+                <%- page.content %>
+            </div>
+        </div>
+
+        <!-- Article Footer -->
+        <footer class="post-footer">
+        </footer>
+
+        <!-- Related Posts -->
+        <section class="related-posts">
+            <h3 class="related-title">相关推荐</h3>
+            <div class="related-list">
+                <% 
+                var related = site.posts.filter(function(post) {
+                    return post._id !== page._id && 
+                        post.tags.some(function(tag) { 
+                            return page.tags.map(function(t) { return t._id; }).indexOf(tag._id) !== -1;
+                        });
+                }).slice(0, 3);
+                
+                if (related.length === 0) {
+                    related = site.posts.filter(function(post) { return post._id !== page._id; }).slice(0, 3);
+                }
+                
+                related.forEach(function(post) { 
+                %>
+                    <div class="related-item">
+                        <h4 class="related-item-title">
+                            <a href="<%- config.root %><%- post.path %>"><%- post.title %></a>
+                        </h4>
+                        <p class="related-item-meta">
+                            <span><%- date(post.date, 'YYYY-MM-DD') %></span>
+                            <% if (post.categories.length) { %>
+                                <span><%- post.categories.map(function(cat) { return cat.name; }).join(', ') %></span>
+                            <% } %>
+                        </p>
+                    </div>
+                <% }); %>
+            </div>
+        </section>
+
+        <!-- Comment Section -->
+        <section class="post-comments">
+            <h3 class="comments-title">评论区</h3>
+            <div id="disqus_thread"></div>
+        </section>
+    </div>
+</article>
+
+<!-- Article Navigation -->
+<section class="article-nav">
+    <div class="container">
+        <div class="nav-grid">
+            <% if (page.prev) { %>
+                <div class="nav-prev">
+                    <h4>上一篇</h4>
+                    <a href="<%- config.root %><%- page.prev.path %>"><%- page.prev.title %></a>
+                </div>
+            <% } %>
+            <% if (page.next) { %>
+                <div class="nav-next">
+                    <h4>下一篇</h4>
+                    <a href="<%- config.root %><%- page.next.path %>"><%- page.next.title %></a>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</section>

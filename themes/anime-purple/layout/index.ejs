@@ -1,0 +1,153 @@
+<!-- Hero Section -->
+<section class="hero" style="background-image: url('<%- config.root %><%- theme.images && theme.images.hero_bg ? theme.images.hero_bg.replace(/^\//, '') : 'images/hero-bg.png' %>'); background-size: cover; background-position: center; background-attachment: fixed; height: 100vh;">
+    <div class="hero-content">
+        <h1 class="hero-title"><%- config.title %></h1>
+        <p class="hero-subtitle"><%- config.subtitle || '欢迎来到我的博客' %></p>
+        <div class="hero-search">
+            <input type="text" id="search-input" placeholder="搜索知识库... (Ctrl+K)" class="search-input">
+            <button class="search-btn"><i class="fas fa-search"></i></button>
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stat"><span class="hero-stat-num"><%- site.posts.length %></span><span class="hero-stat-label">篇文章</span></div>
+            <div class="hero-stat"><span class="hero-stat-num"><%- site.categories.length %></span><span class="hero-stat-label">个分类</span></div>
+            <div class="hero-stat"><span class="hero-stat-num"><%- site.tags.length %></span><span class="hero-stat-label">个标签</span></div>
+        </div>
+        <div class="hero-arrow"><i class="fas fa-chevron-down"></i></div>
+    </div>
+</section>
+
+<!-- Knowledge Map Section -->
+<section class="knowledge-map">
+    <div class="container">
+        <h2 class="section-title">知识地图</h2>
+        <div class="km-layout">
+            <div class="km-main">
+                <div class="km-categories">
+                    <% 
+                    var topCats = [];
+                    site.categories.forEach(function(cat) {
+                        if (!cat.parent) topCats.push(cat);
+                    });
+                    topCats.sort(function(a, b) { return b.posts.length - a.posts.length; });
+                    
+                    var catIcons = {
+                        '生活': 'fas fa-heart',
+                        '学习': 'fas fa-graduation-cap',
+                        '技术': 'fas fa-code',
+                        '读书': 'fas fa-book'
+                    };
+                    %>
+                    <% topCats.forEach(function(cat) { %>
+                        <a href="<%- config.root %><%- cat.path %>" class="km-cat-card">
+                            <div class="km-cat-icon">
+                                <i class="<%- catIcons[cat.name] || 'fas fa-folder' %>"></i>
+                            </div>
+                            <div class="km-cat-info">
+                                <h3><%- cat.name %></h3>
+                                <span><%- cat.posts.length %> 篇</span>
+                            </div>
+                            <div class="km-cat-recent">
+                                <% cat.posts.sort('-date').limit(2).forEach(function(p) { %>
+                                    <div class="km-cat-recent-item"><%- p.title %></div>
+                                <% }); %>
+                            </div>
+                            <i class="fas fa-arrow-right km-cat-arrow"></i>
+                        </a>
+                    <% }); %>
+                </div>
+            </div>
+
+            <!-- Anime Art Slot: 首页立绘 -->
+            <% if (theme.anime_art && theme.anime_art.home_character) { %>
+            <div class="km-side anime-art-slot">
+                <img src="<%- config.root %><%- theme.anime_art.home_character.replace(/^\//, '') %>" alt="Character" class="km-character-art">
+                <div class="km-side-placeholder">
+                    <i class="fas fa-palette"></i>
+                    <span>立绘展示区</span>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<!-- Recently Updated Section -->
+<section class="recent-updates">
+    <div class="container">
+        <h2 class="section-title">最近更新</h2>
+        <div class="posts-grid">
+            <% page.posts.sort('-date').forEach(function(post) { %>
+                <article class="post-card">
+                    <% if (post.cover) { %>
+                        <div class="post-cover">
+                            <img src="<%- post.cover %>" alt="<%- post.title %>">
+                        </div>
+                    <% } %>
+                    <div class="post-card-content">
+                        <h3 class="post-title">
+                            <a href="<%- config.root %><%- post.path %>"><%- post.title %></a>
+                        </h3>
+                        <p class="post-excerpt"><%- post.excerpt || strip_html(post.content).substring(0, 150) %></p>
+                        <div class="post-meta">
+                            <span class="post-date">
+                                <i class="fas fa-calendar"></i>
+                                <%- date(post.date, 'YYYY-MM-DD') %>
+                            </span>
+                            <% if (post.categories.length) { %>
+                            <span class="post-category">
+                                <i class="fas fa-folder"></i>
+                                <% post.categories.forEach(function(cat, idx) { %>
+                                    <a href="<%- config.root %><%- cat.path %>"><%- cat.name %></a><% if (idx < post.categories.length - 1) { %>, <% } %>
+                                <% }); %>
+                            </span>
+                            <% } %>
+                        </div>
+                        <div class="post-tags">
+                            <% post.tags.forEach(function(tag) { %>
+                                <a href="<%- config.root %><%- tag.path %>" class="tag"><%- tag.name %></a>
+                            <% }); %>
+                        </div>
+                    </div>
+                </article>
+            <% }); %>
+        </div>
+    </div>
+</section>
+
+<!-- Tags Cloud Section -->
+<section class="home-tags">
+    <div class="container">
+        <h2 class="section-title">标签索引</h2>
+        <div class="tags-cloud-full">
+            <% site.tags.sort('name').forEach(function(tag) { %>
+                <a href="<%- config.root %><%- tag.path %>" class="tag-cloud-card">
+                    <span class="tag-cloud-card-name"># <%- tag.name %></span>
+                    <span class="tag-cloud-card-count"><%- tag.posts.length %> 篇</span>
+                </a>
+            <% }); %>
+        </div>
+    </div>
+</section>
+
+<!-- Pagination -->
+<% if (page.total > 1) { %>
+    <section class="pagination">
+        <div class="container">
+            <div class="pagination-nav">
+                <% if (page.prev) { %>
+                    <a href="<%- config.root %><%- page.prev_link %>" class="pagination-btn prev">
+                        <i class="fas fa-chevron-left"></i> 上一页
+                    </a>
+                <% } %>
+                <span class="pagination-info">
+                    第 <%- page.current %> / <%- page.total %> 页
+                </span>
+                <% if (page.next) { %>
+                    <a href="<%- config.root %><%- page.next_link %>" class="pagination-btn next">
+                        下一页 <i class="fas fa-chevron-right"></i>
+                    </a>
+                <% } %>
+            </div>
+        </div>
+    </section>
+<% } %>
