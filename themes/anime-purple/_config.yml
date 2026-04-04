@@ -53,7 +53,7 @@ enable_search: true
 # Hero section background image URL
 # 使用本地图片: /images/hero-bg.png
 # 或使用在线图片 URL
-hero_bg: /images/hero-bg.png
+hero_bg: /images/miku01.jpg
 
 # Hero title (if not using config.title)
 # hero_title: Welcome to My Blog
@@ -67,7 +67,7 @@ hero_subtitle: 欢迎来到我的博客
 
 images:
   # 首页 Hero 大背景图
-  hero_bg: /images/hero-bg.png
+  hero_bg: /images/miku01.jpg
   # 侧边栏装饰图（二次元角色等）
   sidebar_art: /images/sidebar-art.png
   # 文章页顶部装饰图
